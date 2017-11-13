@@ -5,6 +5,7 @@
  */
 package javaapplication9;
 import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.GregorianCalendar;
 
 /**
@@ -17,28 +18,35 @@ public class NewJFrame extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public NewJFrame() {
-        initComponents();        
+        initComponents(); 
+        choice1.add("America/Los_Angeles");
+        choice1.add("America/Los_Angeles");
+        choice1.add("Asia/Colombo");
+        choice1.add("Canada/Central");
+        choice1.add("Egypt");
+        choice1.add("Europe/Berlin");
+        choice1.add("Greenwich");
+        choice1.add("IST");
+        choice1.add("Japan");
+        
         System.out.println("Check - 1");
         new Thread(){
             
             public void run() {
                 //clock.setText("23:22:22 A.M");
-                while(true) {
-                   
-                   Calendar cal = new GregorianCalendar();
+                while(true) {                   
+                   Calendar cal = new GregorianCalendar(TimeZone.getTimeZone(choice1.getItem(choice1.getSelectedIndex())));
                    int hour = cal.get(Calendar.HOUR);
                    int min = cal.get(Calendar.MINUTE);
                    int sec = cal.get(Calendar.SECOND);
                    int AM_PM = cal.get(Calendar.AM_PM);
-                   String time;
+                   String time="";
                   //System.out.println(time);
                    if(jRadioButton1.isSelected()) {
                        
                        if(AM_PM == 1)
                            hour = hour+12;                               
                        if(hour<=9) 
-                           time = "0"+hour+":";
-                       else 
                            time = hour+":";                       
                        if(min<=9)
                            time = time+"0"+min+":";
